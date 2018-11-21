@@ -1,7 +1,3 @@
-# Index
+# Thoughts About Embedded Rust
 
-```rust
-fn main() {
-  // pages!
-}
-```
+[What Embedded Rust has Taught Me about Allocation](emb_alloc.md)
