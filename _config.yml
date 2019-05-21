@@ -8,3 +8,6 @@ include:
   - LICENSE.md
 
 theme: jekyll-theme-tactile
+
+title: Optimal Tour
+description: Writing about Rust, embedded development, and the intersection of the two.
