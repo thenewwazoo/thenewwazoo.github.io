@@ -1,6 +1,11 @@
-# Thoughts About Rust
+---
+title: Thoughts about Rust
+layout: index
+---
 
-[Rebuffing the Attack of the `clone`](clone.md)
+## Articles about Rust, generally
 
-Forthcoming articles:
+* [Rebuffing the Attack of the `clone`](clone.md)
+
+## Forthcoming articles:
 * What Embedded Rust has Taught Me about Allocation
