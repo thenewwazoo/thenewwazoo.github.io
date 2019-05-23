@@ -301,7 +301,7 @@ freely! We can make a reference, and move it into `into_iter`, and still own the
 Or, the desugared version:
 
 ```rust
-    let mut iter = &bad_letters.into_iter();
+    let mut iter = (&bad_letters).into_iter();
     // ...
 ```
 
