@@ -106,7 +106,7 @@ novice Rust programmer, know when it's the right call and when it's not?
 
 I'm not going to regurgitate [the
 docs](https://doc.rust-lang.org/std/marker/trait.Copy.html#whats-the-difference-between-copy-and-clone)
-here. They're exceptionally well-written. Give them a read after have our chat.
+here. They're exceptionally well-written. Give them a read after we have our chat.
 
 At its simplest, cloning makes a copy of the data, in a way that makes sure any references and
 pointers internal to the data are valid (usually by copying the data behind the pointer). Most of
