@@ -102,7 +102,7 @@ The important part is this: cloning is almost always the wrong solution, but it'
 way to make the compiler stop bugging you and let you get on with your work. So how can you, as a
 novice Rust programmer, know when it's the right call and when it's not?
 
-Update: I've gotten some questions about [what this example would look like without clone](https://www.reddit.com/r/rust/comments/bry7ya/rebuffing_the_attack_of_the_clones_a_newbies/eohnjjo/), so I've added a source code listing [in the first addendum](that-first-example-but-without-clone).
+Update: I've gotten some questions about [what this example would look like without clone](https://www.reddit.com/r/rust/comments/bry7ya/rebuffing_the_attack_of_the_clones_a_newbies/eohnjjo/), so I've added a source code listing [in the first addendum](#that-first-example-but-without-clone).
 
 ## What Does `clone` Do?
 
@@ -399,7 +399,7 @@ can look like this:
                     return Err(selection.0);
 ```
 
-The key here is that references are `Copy` - they can be... copied. And `Option` is `Copy` if the thing it contains is `Copy` (which it is, because it holds a _reference_ to our `String`). So when you call `unwrap`, it gets a copy of an `Option<&String>` that it can consume and all is well.
+The key here is that immutable references are `Copy` - they can be... copied. And `Option` is `Copy` if the thing it contains is `Copy` (which it is, because it holds a _reference_ to our `String`). So when you call `unwrap`, it gets a copy of an `Option<&String>` that it can consume and all is well.
 
 A note for meditation: calling `fn foo(thing)` _moves_ `thing` if it can't make a copy of it. If it can (if `thing`'s type is `Copy`) it will make a copy instead. There is no way to move a variable that is `Copy`.
 
