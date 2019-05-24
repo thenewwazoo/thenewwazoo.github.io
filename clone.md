@@ -38,7 +38,7 @@ size_t thinglen(const AThing *const thing) {
 int main() {
     char* name = (char*)malloc(11);
     if (!name) return -1;
-    strcpy("rico suave", name);
+    strcpy(name, "rico suave");
     AThing my_thing = { .name = name };
     printf("%s is %lu chars long\n", name, thinglen(&my_thing));
     free(name);
@@ -101,6 +101,8 @@ and the code compiles and runs like you expect.  This is admittedly a contrived 
 The important part is this: cloning is almost always the wrong solution, but it's an alluringly easy
 way to make the compiler stop bugging you and let you get on with your work. So how can you, as a
 novice Rust programmer, know when it's the right call and when it's not?
+
+Update: I've gotten some questions about [what this example would look like without clone](https://www.reddit.com/r/rust/comments/bry7ya/rebuffing_the_attack_of_the_clones_a_newbies/eohnjjo/), so I've added a source code listing [in the first addendum](that-first-example-but-without-clone).
 
 ## What Does `clone` Do?
 
@@ -388,7 +390,7 @@ In Rust, we really like references, right? Happily, `Option` provides a method c
 pub fn as_ref(&self) -> Option<&T>;
 ```
 
-This _borrows_ self and returns a _reference to_ the data inside the `Option`. Huzzah! Now our code
+This _borrows_ self (the `Option`) and returns a _reference to_ the data inside the `Option`. Huzzah! Now our code
 can look like this:
 
 ```rust
@@ -397,8 +399,9 @@ can look like this:
                     return Err(selection.0);
 ```
 
-This makes `unwrap` move the reference out of the `Option` that `as_ref` returns. That is, it consumes the _reference_.
-And remember, references are cheap! And then we've got a reference to our `String` and all is well.
+The key here is that references are `Copy` - they can be... copied. And `Option` is `Copy` if the thing it contains is `Copy` (which it is, because it holds a _reference_ to our `String`). So when you call `unwrap`, it gets a copy of an `Option<&String>` that it can consume and all is well.
+
+A note for meditation: calling `fn foo(thing)` _moves_ `thing` if it can't make a copy of it. If it can (if `thing`'s type is `Copy`) it will make a copy instead. There is no way to move a variable that is `Copy`.
 
 A more idiomatic way is to dispense with checking that the `Option` is not `None` and stop using
 `unwrap` entirely. We do this using `if let`:
@@ -417,3 +420,36 @@ Hopefully showing you some counterexamples will help you think about _why_ you'r
 in Rust, which will help reduce the amount of time you spend writing ill-formed code. If you have
 any more examples that you've seen in the wild, please send them along. I'll add some more as I come
 up with them too.
+
+## Addenda
+### That first example, but without clone
+
+```rust
+/// Our thing
+struct AThing<'a> {
+    /// A reference to some data associated with our thing
+    pub name: &'a str,
+}
+
+impl<'a> AThing<'a> {
+    /// Do some operation upon this thing
+    pub fn thing_len(&self) -> usize {
+        self.name.len()
+    }
+}
+
+fn main() {
+    let dj_name = String::from("don juan");
+    let my_thing = AThing { name: &dj_name };
+    println!("{} is {} chars long", name, my_thing.thing_len());
+}
+```
+
+It's a fairly straightforward change. We change the `name` member to a `&str` and give a name (`'a`) to the lifetime of the borrow. We borrow `dj_name` because it's a `String`. If we had written:
+
+```rust
+    let dj_name = "don juan";
+    let my_thing = AThing { name: dj_name };
+```
+
+Then borrow isn't necessary because the type of `dj_name` would be `&'static str`. Because references are `Copy`, we just copy the "pointer" to the data right into our new `AThing`. (The `'static` just means that the reference is always valid aka has a static lifetime aka is statically declared).
