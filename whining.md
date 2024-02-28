@@ -1,7 +1,7 @@
 ---
 title: "Stop Whining about Rust Hype - A Pro-Rust Rant"
 description: "A rant by an annoying Rust advocate"
-layout: post
+layout: default
 date: 2021-12-20T00:00:00Z
 ---
 

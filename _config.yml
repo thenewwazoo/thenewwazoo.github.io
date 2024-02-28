@@ -1,13 +1,10 @@
+remote_theme: pages-themes/tactile@v0.2.0
 plugins:
+  - jekyll-remote-theme
   - jekyll-relative-links
 relative_links:
   enabled: true
   collections: true
-include:
-  - README.md
-  - LICENSE.md
-
-theme: jekyll-theme-tactile
-
-title: Optimal Tour
-description: Writing about Rust, embedded development, and the intersection of the two.
+title: "Optimal Tour"
+description: "A dumping ground for long-form thoughts I'd like to share"
+url: "https://thenewwazoo.github.io"

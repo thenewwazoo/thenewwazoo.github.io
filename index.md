@@ -1,9 +1,11 @@
 ---
-title: Thoughts about Rust
-layout: index
+title: Thoughts about Things
+layout: default
 ---
 
-## (Published) Articles about Rust, generally
+## Articles about Rust, generally
 
 * [Rebuffing the Attack of the `clone`](clone.md)
 * [Stop Whining about Rust Hype](whining.md)
+
+## Articles about embedded things, occasionally

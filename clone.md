@@ -1,7 +1,7 @@
 ---
 title: Rebuffing the Attack of the Clones
 description: How to use, and not to use, `clone`
-layout: post
+layout: default
 date: 2019-05-21T00:00:00Z
 ---
 
