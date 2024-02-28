@@ -9,3 +9,5 @@ layout: default
 * [Stop Whining about Rust Hype](whining.md)
 
 ## Articles about embedded things, occasionally
+
+* [On Abandoning my RATGDO Native HomeKit Users](bye-bye-ratgdo.md)
