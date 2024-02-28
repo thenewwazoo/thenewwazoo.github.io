@@ -5,15 +5,15 @@ layout: default
 date: 2024-02-23T00:00:00Z
 ---
 
-tl;dr: I'm retiring from the ESP8266 Native HomeKit RATGDO codebase, and recommend that it not be
+tl;dr: I'm retiring from the [ESP8266 Native HomeKit RATGDO] codebase, and recommend that it not be
 used. I'm going to move forward with an ESP32 version to scratch my own itch, and hopefully it'll be
 useful to others. I'm genuinely sorry to, and thankful to, everyone who used the code I wrote. Skip
 to [What's Next?](#whats-next) if you are looking for an alternate recommendation.
 
-Let me open this by stating who I am: I'm just some guy. I don't sell the RATGDO hardware (that's
-Paul), and I paid for my first one (Paul sent me a second for free to develop with, which was
+Let me open this by stating who I am: I'm just some guy. I don't sell the [RATGDO] hardware (that's
+[Paul]), and I paid for my first one (Paul sent me a second for free to develop with, which was
 very kind). I _would_ really like to do embedded work for a living, so if you'd like to hire me, you
-should get in touch. But aside from that, I'm just a person who had an itch, and the time and skill
+should [get in touch]. But aside from that, I'm just a person who had an itch, and the time and skill
 to try and scratch it myself.
 
 ## An apology
@@ -21,8 +21,8 @@ to try and scratch it myself.
 This story is a hard one to tell because it involves speaking negatively about lots of awesome
 contributions to the commons by well-intentioned people (including myself!). The world has been
 improved and enriched by the existence of Arduino, despite it (IMO) not being a good basis for
-"production" hardware. Likewise with the ESP8266-compatible HomeKit implementation for the Arduino
-platform, which is no longer maintained and has significant bugs. And so on, up the whole stack.
+"production" hardware. Likewise with the [ESP8266-compatible HomeKit implementation for the Arduino
+platform], which is no longer maintained and has significant bugs. And so on, up the whole stack.
 
 I feel deep gratitude for all of these things, but after months of hobby-time work I wasn't able to
 build a product using those components that was of the quality I wanted to provide for the people
@@ -39,34 +39,34 @@ bought.
 
 For those users who have already purchased a RATGDO based on the ESP8266 (that is all of them),
 there are a handful of options. I'm assuming that anyone interested in this post wants their garage
-door to be controllable via HomeKit. In that case, the best option is probably to use Homebridge and
-the homebridge-ratgdo plugin, along with the MQTT firmware. I like Homebridge, and run it quite
+door to be controllable via HomeKit. In that case, the best option is probably to use [Homebridge] and
+the [homebridge-ratgdo] plugin, along with the [MQTT firmware]. I like Homebridge, and run it quite
 successfully on a Raspberry Pi 4.
 
-Another option is to use Home Assistant and the ESPHome firmware, along with the HomeKit
-integration. The ESPHome firmware is, overall, nicer code. I have personally had a bad time with
+Another option is to use [Home Assistant] and the [ESPHome firmware], along with the [HomeKit
+integration]. The ESPHome firmware is, overall, nicer code. I have personally had a bad time with
 Home Assistant but others have had great success.
+
+The last option is to keep on truckin' with the [ESP8266 Native HomeKit RATGDO] firmware I wrote.
+There is a small community of contributors who are interested in keeping it going, most especially
+[jgstroud], who disagrees with me that the task is hopeless. They are still adding features and
+trying to fix the failures. *Today it is crashy and headache-prone for most users*.
 
 There is no RATGDO on the market today that has an ESP32 on it. Certain older RATGDOs have modules
 that are connected via headers (versus having ESP12 modules soldered directly to the carrier board).
 I happen to have bought one of those older modules, and also have some Wemos D1 Mini-compatible
 ESP32 boards on hand. So I'll be using those to port the existing code to the ESP32, and releasing
-it.
-
-The last option is to keep on truckin' with the native HomeKit firmware I wrote. There is a small
-community of contributors who are interested in keeping it going, most especially [jgstroud], who
-disagrees with me that the task is hopeless. They are still adding features and trying to fix the
-failures.
+that code.
 
 ## How did we get here?
 
-When Chamberlain decided to block access to their APIs without engaging with the community of
+When [Chamberlain decided to block access] to their APIs without engaging with the community of
 developers who'd worked to build upon it, I went looking for alternatives. There were a small number
-of commercial options, and one option that appeared much more in the hacker spirit: the RATGDO. At
+of commercial options, and one option that appeared much more in the hacker spirit: the [RATGDO]. At
 the time, there were two firmwares available: one using MQTT, and another built upon ESPHome. There
-was quite conspicuously not a HomeKit option.
+was quite conspicuously *not* a HomeKit option.
 
-I've always had an interest in HomeKit. I'm fully bought into the Apple ecosystem, and like Charlie
+I've always had an interest in HomeKit. I'm fully bought into the Apple ecosystem and, like Charlie
 Brown trying to kick the football, I've always hoped that HomeKit might one day live up to its
 potential. Instead the ADK remains a bit of a pig, the spec is (partly) locked away, and the Home
 app is one of the best examples of Apple's institutional dysfunction leaking out for the world to
@@ -75,9 +75,9 @@ and under-funded, and _it shows_.
 
 But I digress.
 
-I'd used HomeSpan before to build a logic board replacement for my kid's window fan, so I thought,
-"I know, I'll write a native HomeKit firmware!" And because every good idea deserves to be brought
-to market as quickly as possible, I grabbed the MQTT firmware (based on Arduino) and an
+I'd used [HomeSpan] before to build a logic board replacement for my kid's window fan, so I thought,
+"I know, I'll write a native HomeKit firmware!" And because every good idea inspires panic that
+someone else will beat you to it, I grabbed the [MQTT firmware] for the Arduino platform and an
 off-the-shelf port of the HomeKit SDK, and got to hacking. But not with HomeSpan, because that
 doesn't support the ESP8266.
 
@@ -130,3 +130,16 @@ this so I can point interested users to it. As such, I'm going to write it up Re
 So that's where I am.
 
 [jgstroud]: https://github.com/jgstroud
+[ESP8266 Native HomeKit RATGDO]: https://github.com/ratgdo/homekit-ratgdo
+[Paul]: https://github.com/PaulWieland
+[RATGDO]: https://paulwieland.github.io/ratgdo/
+[get in touch]: https://github.com/TheNewWazoo
+[ESP8266-compatible HomeKit implementation for the Arduino platform]: https://github.com/Mixiaoxiao/Arduino-HomeKit-ESP8266
+[Homebridge]: https://homebridge.io
+[homebridge-ratgdo]: https://github.com/hjdhjd/homebridge-ratgdo
+[Home Assistant]: https://www.home-assistant.io
+[ESPHome firmware]: https://github.com/ratgdo/esphome-ratgdo
+[HomeKit integration]: https://www.home-assistant.io/integrations/homekit/
+[MQTT firmware]: https://github.com/ratgdo/mqtt-ratgdo
+[Chamberlain decided to block access]: https://chamberlaingroup.com/press/a-message-about-our-decision-to-prevent-unauthorized-usage-of-myq
+[HomeSpan]: https://github.com/HomeSpan/HomeSpan
